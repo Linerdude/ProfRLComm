@@ -120,7 +120,7 @@ class GUI:
                 return
         self.log(f"Block {color} {shape} not found or already chosen")
 
-    def main(self):
+    def main(self, init_only=False):
         # Draw all 9 unique blocks
         for (color, shape), (x, y) in zip(
             [(c, s) for c in self.colors for s in self.shapes], self.block_positions
@@ -140,8 +140,8 @@ class GUI:
         # Connect event handler
         self.fig.canvas.mpl_connect("pick_event", self.on_pick)
 
-        # Show plot
-        plt.show(block=True)
+        if not init_only:
+            plt.show(block=True)
 
 
 if __name__ == "__main__":
